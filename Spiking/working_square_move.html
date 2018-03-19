@@ -10,6 +10,13 @@
 <body onload="init()">
  <canvas id="canvas" width="640" height="480"></canvas>
  <script>
+
+ window.addEventListener('load', eventWindowLoaded, false);
+
+ function eventWindowLoaded() {
+     init();
+ }
+
   var KEYCODE_LEFT = 37,
    KEYCODE_RIGHT = 39,
    KEYCODE_UP = 38,
@@ -32,8 +39,8 @@
    moveRectangle.graphics.beginFill("#000000");
    moveRectangle.graphics.drawRect(0,0,RECT_SIZE ,RECT_SIZE );
    moveRectangle.graphics.endFill();
-   moveRectangle.x = stage.canvas.width/2 - RECT_SIZE/2;
-   moveRectangle.y = stage.canvas.height/2 - RECT_SIZE/2;
+   moveRectangle.x = stage.canvas.width/1 - RECT_SIZE/1;
+   moveRectangle.y = stage.canvas.height/1 - RECT_SIZE/1;
    stage.addChild(moveRectangle);
 
 

@@ -5,18 +5,25 @@
 	<link href="../_shared/demo.css" rel="stylesheet" type="text/css">
 	<script src="http://code.createjs.com/easeljs-0.8.1.min.js"></script>
 	<script>
-		function init() {
-			var stage = new createjs.Stage("demoCanvas");
-			var square = new createjs.Shape();
-			square.graphics.beginFill("red").drawRect(0, 0, 30, 30);
-			square.x = 0
-			square.y = 0
-			stage.addChild(square);
-      square.x = square.x + 3;
-      if (square.x > stage.canvas.width) { square.x = 0; }
-			// stage.addChild(new createjs.Shape()).setTransform(100,100).graphics.f("blue").dc(0,0,20);
-			stage.update();
-		}
+
+  window.addEventListener('load', eventWindowLoaded, false);
+
+  function eventWindowLoaded() {
+      init();
+  }
+
+	function init() {
+		var stage = new createjs.Stage("demoCanvas");
+		var square = new createjs.Shape();
+		square.graphics.beginFill("red").drawRect(0, 0, 30, 30);
+		square.x = 0
+		square.y = 0
+		stage.addChild(square);
+    square.x = square.x + 3;
+    if (square.x > stage.canvas.width) { square.x = 0; }
+		// stage.addChild(new createjs.Shape()).setTransform(100,100).graphics.f("blue").dc(0,0,20);
+		stage.update();
+	}
 	</script>
 </head>
 <body onload="init();">
