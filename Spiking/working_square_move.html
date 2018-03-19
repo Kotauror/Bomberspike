@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+ <style>
+    #canvas{border: 1px solid #999999;}
+  </style>
+    <script src="http://code.createjs.com/easeljs-0.8.1.min.js"></script>
+</head>
+<body onload="init()">
+ <canvas id="canvas" width="640" height="480"></canvas>
+ <script>
+  var KEYCODE_LEFT = 37,
+   KEYCODE_RIGHT = 39,
+   KEYCODE_UP = 38,
+   KEYCODE_DOWN = 40,
+   KEYCODE_SPACE = 32,
+   RECT_SIZE = 100,
+   SPEED = 5;
+  var stage, moveRectangle;
+  var leftArrow, rightArrow, upArrow, downArrow = false;
+
+  function init()
+  {
+   //setup createjs
+   stage = new createjs.Stage('canvas');
+   createjs.Ticker.setFPS(60);
+   createjs.Ticker.addEventListener("tick", tick);
+
+   //add rectangle to stage
+   moveRectangle = new createjs.Shape();
+   moveRectangle.graphics.beginFill("#000000");
+   moveRectangle.graphics.drawRect(0,0,RECT_SIZE ,RECT_SIZE );
+   moveRectangle.graphics.endFill();
+   moveRectangle.x = stage.canvas.width/2 - RECT_SIZE/2;
+   moveRectangle.y = stage.canvas.height/2 - RECT_SIZE/2;
+   stage.addChild(moveRectangle);
+
+
+   //keyboard handlers
+   window.onkeyup = keyUpHandler;
+   window.onkeydown = keyDownHandler;
+  }
+
+
+  function keyDownHandler(e)
+  {
+   switch(e.keyCode)
+   {
+    case KEYCODE_LEFT:  leftArrow = true; break;
+    case KEYCODE_RIGHT: rightArrow = true; break;
+    case KEYCODE_UP:    upArrow = true; break;
+    case KEYCODE_DOWN:  downArrow = true; break;
+   }
+  }
+
+  function keyUpHandler(e)
+  {
+   switch(e.keyCode)
+   {
+    case KEYCODE_LEFT:  leftArrow = false; break;
+    case KEYCODE_RIGHT: rightArrow = false; break;
+    case KEYCODE_UP:    upArrow = false; break;
+    case KEYCODE_DOWN:  downArrow = false; break;
+   }
+  }
+
+
+  function move()
+  {
+   if(leftArrow) moveRectangle.x -= SPEED;
+   if(rightArrow) moveRectangle.x += SPEED;
+   if(upArrow) moveRectangle.y -= SPEED;
+   if(downArrow) moveRectangle.y += SPEED;
+  }
+
+
+  function tick(e)
+  {
+   move();
+   stage.update();
+  }
+ </script>
+</body>
+</html>
